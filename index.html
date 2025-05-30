@@ -1,0 +1,320 @@
+<html lang="en"></html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>CSS Grid</title>
+
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Gradient background with smooth transition */
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #f0f0f5;
+  }
+  
+  h1 {
+    margin-bottom: 40px;
+    font-size: 3rem;
+    font-weight: 900; /* Extra bold */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(160px, 160px);
+    gap: 15px;
+    grid-auto-flow: dense;
+    padding: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .gallery-container {
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .gallery-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .gallery-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+  }
+  
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease-in-out;
+    border-radius: 16px;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.25);
+  }
+  
+  .text {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    padding: 0.6em 1.2em;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .gallery-item:hover .text {
+    opacity: 1;
+  }
+  
+  /* Width Classes */
+  .w-1 { grid-column: span 1; }
+  .w-2 { grid-column: span 2; }
+  .w-3 { grid-column: span 3; }
+  .w-4 { grid-column: span 4; }
+  .w-5 { grid-column: span 5; }
+  .w-6 { grid-column: span 6; }
+  
+  /* Height Classes */
+  .h-1 { grid-row: span 1; }
+  .h-2 { grid-row: span 2; }
+  .h-3 { grid-row: span 3; }
+  .h-4 { grid-row: span 4; }
+  .h-5 { grid-row: span 5; }
+  .h-6 { grid-row: span 6; }
+  
+  /* Responsive Layout */
+  @media screen and (max-width: 768px) {
+    .container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .w-1, .w-2, .w-3, .w-4, .w-5, .w-6 {
+      grid-column: span 1 !important;
+    }
+  }
+  
+</style>
+<body>
+
+  <h1>Responsive Gallery</h1>
+  <div class="container">
+
+    <div class="gallery-container w-3 h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/93/a9/b6/93a9b68b214150774a0192f475b4de29.jpg" alt="nature">
+        </div>
+        <div class="text">Nature</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-3 h-3">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/0f/01/fb/0f01fbe190d0013a4fa226b22027ea7c.jpg" alt="people">
+        </div>
+        <div class="text">People</div>
+      </div>
+    </div>
+
+    <div class="gallery-container h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/39/4a/85/394a8514c21be4c0fc80e3d2a9879019.jpg" alt="sport">
+        </div>
+        <div class="text">Sport</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/0b/ca/80/0bca80eee22326af63b406c91700fd92.jpg" alt="fitness" >
+        </div>
+        <div class="text">Fitness</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-4 h-1">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/90/76/ff/9076ffe25767c5003290da18ff86b26b.jpg" alt="food">
+        </div>
+        <div class="text">Food</div>
+      </div>
+    </div>
+
+    <div class="gallery-container">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/1f/03/2d/1f032d2b0c99fd6a557cbd5f544b28fe.jpg" alt="travel">
+        </div>
+        <div class="text">Travel</div>
+      </div>
+    </div>
+
+    <div class="gallery-container h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/ef/4d/df/ef4ddf42da141d5d55b783a77b996b14.jpg" alt="art">
+        </div>
+        <div class="text">Art</div>
+      </div>
+    </div>
+
+    <div class="gallery-container">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/9a/52/e0/9a52e0e3d54cf55a3b9cda3308e057c0.jpg" alt="cars">
+        </div>
+        <div class="text">Cars</div>
+      </div>
+    </div>
+
+  
+
+    <div class="gallery-container w-3 h-3">
+        <div class="gallery-item">
+          <div class="image">
+            <img src="https://i.pinimg.com/736x/3a/cf/e6/3acfe6e20fb150000da920999ba1a67c.jpg" alt="animal">
+          </div>
+          <div class="text">Animal</div>
+        </div>
+      </div>
+
+      <div class="gallery-container w-1 h-3">
+        <div class="gallery-item">
+          <div class="image">
+            <img src="https://i.pinimg.com/736x/c7/e8/e4/c7e8e482d8fda880f6a0e55da9662f19.jpg" alt="college building">
+          </div>
+          <div class="text">College Life</div>
+        </div>
+      </div>
+      <div class="gallery-container w-1 h-3">
+        <div class="gallery-item">
+          <div class="image">
+            <img src="https://i.pinimg.com/736x/74/69/0a/74690a080956091e0d40c0726a096555.jpg" alt="college building">
+          </div>
+          <div class="text">School Life</div>
+        </div>
+      </div>
+      
+         
+    <div class="gallery-container w-2 h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/82/0d/5f/820d5f79056469316e0bbe76134e70db.jpg" alt="mountains">
+        </div>
+        <div class="text">Mountains</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-3 h-1">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/db/6e/63/db6e63c61072b3065def3d69b3d18faf.jpg" alt="sunset beach">
+        </div>
+        <div class="text">Sunset Beach</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-1 h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/d0/e9/a2/d0e9a20ef45446cfc2683eeded734d7c.jpg" alt="city lights">
+        </div>
+        <div class="text">City Lights</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-2 h-1">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/60/aa/62/60aa62eb0463921843e9ccdb85ec5204.jpg" alt="flowers">
+        </div>
+        <div class="text">Flowers</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-2 h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/1f/7a/ce/1f7ace531a932238389b7797c4d1799d.jpg" alt="forest path">
+        </div>
+        <div class="text">Forest Path</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-3 h-1">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/99/f6/1d/99f61d7b53ca9faf7b2ad2aa6d89e2d9.jpg" alt="city skyline">
+        </div>
+        <div class="text">City Skyline</div>
+      </div>
+    </div>
+
+    <div class="gallery-container w-1 h-2">
+      <div class="gallery-item">
+        <div class="image">
+          <img src="https://i.pinimg.com/736x/73/49/a6/7349a612db99455bf3646b6837a37b80.jpg" alt="desert dunes">
+        </div>
+        <div class="text">Desert Dunes</div>
+      </div>
+    </div>
+
+
+    </div>
+
+  
+</body>
+
+</html>
